@@ -113,7 +113,7 @@ button {
     <h1>Natalia, czy zostaniesz moją walentynką? 💕</h1>
 
     <!-- ZDJĘCIE -->
-    <img src="my.jpg" alt="Kocham Cię!" class="photo">
+    <img src="zdjecie.jpg" alt="Nasze zdjęcie" class="photo">
 
     <div class="countdown" id="countdown"></div>
 
@@ -123,26 +123,34 @@ button {
     </div>
 
     <div class="message" id="message">
-        💖 GRATULACJE! WYGRYWASZ WALENTYNKOWĄ RANDKE NIESPODZIANKE! 💖
+        💖 WIEDZIAŁEM! CZEKA NAS PIĘKNA WALENTYNKA 💖
     </div>
 </div>
 
 <!-- MUZYKA -->
-<audio id="music" src="lovers" loop></audio>
+<audio id="music" src="lovers.mp3" loop autoplay></audio>
 
 <script>
-function yesClicked() {
-    document.getElementById("message").style.display = "block";
-
+// Uruchomienie muzyki po załadowaniu strony
+window.onload = function() {
     const music = document.getElementById("music");
     music.volume = 0.6;
-    music.play();
+    
+    music.play().catch(err => {
+        console.log("Autoplay zablokowany przez przeglądarkę:", err);
+    });
+}
+
+// Funkcja po kliknięciu TAK
+function yesClicked() {
+    document.getElementById("message").style.display = "block";
 
     for (let i = 0; i < 160; i++) {
         setTimeout(createHeart, i * 25);
     }
 }
 
+// Animacja serc
 function createHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -161,7 +169,7 @@ noBtn.addEventListener("mouseover", () => {
     noBtn.style.top = Math.random() * (window.innerHeight - noBtn.offsetHeight) + "px";
 });
 
-// COUNTDOWN
+// COUNTDOWN DO WALENTYNEK
 const countdownEl = document.getElementById("countdown");
 const valentines = new Date(new Date().getFullYear(), 1, 14);
 
@@ -182,6 +190,3 @@ setInterval(() => {
 
 </body>
 </html>
-
-
-
