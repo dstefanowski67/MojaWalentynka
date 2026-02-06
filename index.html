@@ -123,34 +123,32 @@ button {
     </div>
 
     <div class="message" id="message">
-        💖 GRATULACJE, WYGRAŁAŚ WALENTYNKOWĄ RANDKĘ NIESPODZIANKE! 💖
+        💖 GRATULACJE, WYGRAŁAŚ WALENTYNKOWĄ RANDKĘ NIESPODZIANKĘ! 💖
     </div>
 </div>
 
 <!-- MUZYKA -->
-<audio id="music" src="lovers.mp3" loop autoplay></audio>
+<audio id="music" src="lovers.mp3" loop></audio>
 
 <script>
-// Uruchomienie muzyki po załadowaniu strony
-window.onload = function() {
-    const music = document.getElementById("music");
-    music.volume = 0.6;
-    
-    music.play().catch(err => {
-        console.log("Autoplay zablokowany przez przeglądarkę:", err);
-    });
-}
-
 // Funkcja po kliknięciu TAK
 function yesClicked() {
     document.getElementById("message").style.display = "block";
 
+    // Odtwarzanie muzyki po kliknięciu
+    const music = document.getElementById("music");
+    music.volume = 0.6;
+    music.play().catch(err => {
+        console.log("Nie udało się odtworzyć muzyki:", err);
+    });
+
+    // Animacja serc
     for (let i = 0; i < 160; i++) {
         setTimeout(createHeart, i * 25);
     }
 }
 
-// Animacja serc
+// Animacja unoszących się serc
 function createHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -190,4 +188,3 @@ setInterval(() => {
 
 </body>
 </html>
-
